@@ -1,0 +1,275 @@
+{% extends "base.html" %}
+{% block content %}{
+<div class="content-wrap">
+    <div id="content" class="content">
+        <div id="posts" class="posts-expand">
+            <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+                <div class="post-block" style="opacity: 1; display: block;">
+                    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+                        <meta itemprop="name" content="{{ show.title  }}">
+                        <meta itemprop="description" content="">
+                        <meta itemprop="image" content="{% url 'index' %}media/upimg/starrynight.jpg">
+                    </span>
+                    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+                        <meta itemprop="name" content="星夜">
+                    </span>
+                    <header class="post-header" style="opacity: 1; display: block; transform: translateY(0px);">
+                        <h2 class="post-title" itemprop="name headline">{{ show.title }}</h2>
+                        <div class="post-meta">
+                            <span class="post-time">
+                                <span class="post-meta-item-icon">
+                                    <i class="fa fa-calendar-o"></i>
+                                </span>
+                                <span class="post-meta-item-text">发表于</span>
+                                <time title="创建于" itemprop="dateCreated datePublished" datetime="{{ show.created_time }}">{{ show.created_time|date:'Y-m-j' }}</time>
+                                <span class="post-meta-divider">|</span>
+                                <span class="post-meta-item-icon"><i class="fa fa-calendar-check-o"></i></span>
+                                <span class="post-meta-item-text">更新于:</span><time title="更新于" itemprop="dateModified" datetime="{{ show.modified_time }}">{{ show.modified_time|date:'Y-m-j' }}</time>
+                            </span>
+                            <span class="post-category">
+                                <span class="post-meta-divider">|</span>
+                                <span class="post-meta-item-icon">
+                                    <i class="fa fa-folder-o"></i>
+                                </span>
+                                <span class="post-meta-item-text">分类于</span>
+                                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                                    <a href="{% url 'index' %}categories/show.category.index" itemprop="url" rel="index">
+                                        <span itemprop="name">{{ show.category.name }}</span>
+                                    </a>
+                                </span>
+                            </span>
+                            <span class="post-comments-count">
+                                <span class="post-meta-divider">|</span>
+                                <span class="post-meta-item-icon">
+                                    <i class="fa fa-comment-o"></i>
+                                </span>
+                                <a href="/2019/07/16/项目规划设计常用流程图/#comments" itemprop="discussionUrl">
+                                    <span class="post-comments-count valine-comment-count" data-xid="/2019/07/16/项目规划设计常用流程图/" itemprop="commentCount">0</span>
+                                </a>
+                            </span>
+                            <span class="leancloud_visitors" data-flag-title="{{ show.title }}">
+                                <span class="post-meta-divider">|</span>
+                                <span class="post-meta-item-icon">
+                                    <i class="fa fa-eye"></i>
+                                </span>
+                                <span class="post-meta-item-text">阅读次数:</span>
+                                <span class="leancloud-visitors-count">{{ show.views }}</span>
+                            </span>
+{#                            <span class="post-meta-divider">|</span>#}
+{#                            <span class="page-pv"><i class="fa fa-file-o"></i>  阅读数#}
+{#                                <span class="busuanzi-value" id="busuanzi_value_page_pv">20</span>#}
+{#                            </span>#}
+{#                            <div class="post-wordcount"><span class="post-meta-item-icon"><i#}
+{#                                    class="fa fa-file-word-o"></i></span><span class="post-meta-item-text">字数统计:</span><span#}
+{#                                    title="字数统计">116</span><span class="post-meta-divider">|</span><span#}
+{#                                    class="post-meta-item-icon"><i class="fa fa-clock-o"></i></span><span#}
+{#                                    class="post-meta-item-text">阅读时长 ≈</span><span title="阅读时长">1</span>#}
+{#                            </div>#}
+                        </div>
+                    </header>
+                    <div class="post-body" itemprop="articleBody" style="opacity: 1; display: block; transform: translateY(0px);">
+                        {{ show.bodyhtml|safe }}
+                    </div>
+                    <div>
+                        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+                            <div>坚持原创，您的支持是继续创作的动力！</div>
+                            <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+                                <span>打赏</span>
+                            </button>
+                            <div id="QR" style="display: none;">
+                                <div id="wechat" style="display: inline-block">
+                                    <a href="{% url 'index' %}media/upimg/wechatpay.jpg" class="fancybox fancybox.image" rel="group">
+                                        <img id="wechat_qr" src="{% url 'index' %}media/upimg/wechatpay.jpg" alt="Hans 微信支付">
+                                    </a>
+                                    <p>微信支付</p>
+                                </div>
+                                <div id="alipay" style="display: inline-block">
+                                    <a href="{% url 'index' %}media/upimg/alipay.jpg" class="fancybox fancybox.image" rel="group">
+                                        <img id="alipay_qr" src="{% url 'index' %}media/upimg/alipay.jpg" alt="Hans 支付宝">
+                                    </a>
+                                    <p>支付宝</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <footer class="post-footer">
+                        <div></div>
+                        <div class="post-widgets">
+                            <div id="needsharebutton-postbottom">
+                                <span class="btn">
+                                    <i class="fa fa-share-alt" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="post-nav">
+                            <div class="post-nav-next post-nav-item">
+                                {% if netx_blog %}
+                                <a href="show-{{ next_blog.pk }}.html" rel="next" title="{{ next_blog.title }}"><i class="fa fa-chevron-left"></i>
+                                {{ next_blog }}</a>
+                                {% endif %}
+                            </div>
+                            <span class="post-nav-divider"></span>
+                            <div class="post-nav-prev post-nav-item">
+                                {% if previous_blog %}
+                                <a href="show-{{ previous_blog.pk }}.html" rel="next" title="{{ previous_blog.title }}"><i class="fa fa-chevron-right"></i>
+                                {{ previous_blog }}</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            </article>
+            <div class="post-spread"></div>
+        </div>
+    </div>
+    <div class="comments v" id="comments" style="opacity: 1; display: block;">
+        <div id="gitalk-container"></div>
+        <!--
+        <div class="vwrap">
+            <div class="vheader item3"><input name="nick" placeholder="昵称" class="vnick vinput" type="text"><input
+                    name="mail" placeholder="邮箱" class="vmail vinput" type="email"><input name="link"
+                                                                                          placeholder="网址(http://)"
+                                                                                          class="vlink vinput"
+                                                                                          type="text"></div>
+            <div class="vedit"><textarea id="veditor" class="veditor vinput"
+                                         placeholder="Just go go"></textarea>
+                <div class="vctrl"><span class="vemoji-btn">表情</span> | <span class="vpreview-btn">预览</span>
+                </div>
+                <div class="vemojis" style="display:none;"><i name="grinning" title="grinning">😀</i><i
+                        name="smiley" title="smiley">😃</i><i name="smile" title="smile">😄</i><i
+                        name="grin" title="grin">😁</i><i name="laughing" title="laughing">😆</i><i
+                        name="sweat_smile" title="sweat_smile">😅</i><i name="joy" title="joy">😂</i><i
+                        name="blush" title="blush">😊</i><i name="innocent" title="innocent">😇</i><i
+                        name="wink" title="wink">😉</i><i name="relieved" title="relieved">😌</i><i
+                        name="heart_eyes" title="heart_eyes">😍</i><i name="kissing_heart"
+                                                                      title="kissing_heart">😘</i><i
+                        name="kissing" title="kissing">😗</i><i name="kissing_smiling_eyes"
+                                                                title="kissing_smiling_eyes">😙</i><i
+                        name="kissing_closed_eyes" title="kissing_closed_eyes">😚</i><i name="yum"
+                                                                                        title="yum">😋</i><i
+                        name="stuck_out_tongue_winking_eye" title="stuck_out_tongue_winking_eye">😜</i><i
+                        name="stuck_out_tongue_closed_eyes" title="stuck_out_tongue_closed_eyes">😝</i><i
+                        name="stuck_out_tongue" title="stuck_out_tongue">😛</i><i name="sunglasses"
+                                                                                  title="sunglasses">😎</i><i
+                        name="smirk" title="smirk">😏</i><i name="unamused" title="unamused">😒</i><i
+                        name="disappointed" title="disappointed">😞</i><i name="pensive"
+                                                                          title="pensive">😔</i><i
+                        name="worried" title="worried">😟</i><i name="confused" title="confused">😕</i><i
+                        name="persevere" title="persevere">😣</i><i name="confounded"
+                                                                    title="confounded">😖</i><i
+                        name="tired_face" title="tired_face">😫</i><i name="weary" title="weary">😩</i><i
+                        name="angry" title="angry">😠</i><i name="rage" title="rage">😡</i><i
+                        name="no_mouth" title="no_mouth">😶</i><i name="neutral_face" title="neutral_face">😐</i><i
+                        name="expressionless" title="expressionless">😑</i><i name="hushed" title="hushed">😯</i><i
+                        name="frowning" title="frowning">😦</i><i name="anguished"
+                                                                  title="anguished">😧</i><i
+                        name="open_mouth" title="open_mouth">😮</i><i name="astonished" title="astonished">😲</i><i
+                        name="dizzy_face" title="dizzy_face">😵</i><i name="flushed"
+                                                                      title="flushed">😳</i><i name="scream"
+                                                                                               title="scream">😱</i><i
+                        name="fearful" title="fearful">😨</i><i name="cold_sweat"
+                                                                title="cold_sweat">😰</i><i name="cry"
+                                                                                            title="cry">😢</i><i
+                        name="disappointed_relieved" title="disappointed_relieved">😥</i><i name="sob"
+                                                                                            title="sob">😭</i><i
+                        name="sweat" title="sweat">😓</i><i name="sleepy" title="sleepy">😪</i><i
+                        name="sleeping" title="sleeping">😴</i><i name="mask" title="mask">😷</i><i
+                        name="smiling_imp" title="smiling_imp">😈</i><i name="smiley_cat"
+                                                                        title="smiley_cat">😺</i><i
+                        name="smile_cat" title="smile_cat">😸</i><i name="joy_cat" title="joy_cat">😹</i><i
+                        name="heart_eyes_cat" title="heart_eyes_cat">😻</i><i name="smirk_cat"
+                                                                              title="smirk_cat">😼</i><i
+                        name="kissing_cat" title="kissing_cat">😽</i><i name="scream_cat"
+                                                                        title="scream_cat">🙀</i><i
+                        name="crying_cat_face" title="crying_cat_face">😿</i><i name="pouting_cat"
+                                                                                title="pouting_cat">😾</i><i
+                        name="cat" title="cat">🐱</i><i name="mouse" title="mouse">🐭</i><i name="cow"
+                                                                                            title="cow">🐮</i><i
+                        name="monkey_face" title="monkey_face">🐵</i><i name="hand" title="hand">✋</i><i
+                        name="fist" title="fist">✊</i><i name="v" title="v">✌️</i><i name="point_up"
+                                                                                     title="point_up">👆</i><i
+                        name="point_down" title="point_down">👇</i><i name="point_left" title="point_left">👈</i><i
+                        name="point_right" title="point_right">👉</i><i name="facepunch" title="facepunch">👊</i><i
+                        name="wave" title="wave">👋</i><i name="clap" title="clap">👏</i><i
+                        name="open_hands" title="open_hands">👐</i><i name="+1" title="+1">👍</i><i
+                        name="-1" title="-1">👎</i><i name="ok_hand" title="ok_hand">👌</i><i name="pray"
+                                                                                              title="pray">🙏</i><i
+                        name="ear" title="ear">👂</i><i name="eyes" title="eyes">👀</i><i name="nose"
+                                                                                          title="nose">👃</i><i
+                        name="lips" title="lips">👄</i><i name="tongue" title="tongue">👅</i><i name="heart"
+                                                                                                title="heart">❤️</i><i
+                        name="cupid" title="cupid">💘</i><i name="sparkling_heart" title="sparkling_heart">💖</i><i
+                        name="star" title="star">⭐️</i><i name="sparkles" title="sparkles">✨</i><i
+                        name="zap" title="zap">⚡️</i><i name="sunny" title="sunny">☀️</i><i name="cloud"
+                                                                                            title="cloud">☁️</i><i
+                        name="snowflake" title="snowflake">❄️</i><i name="umbrella"
+                                                                    title="umbrella">☔️</i><i name="coffee"
+                                                                                              title="coffee">☕️</i><i
+                        name="airplane" title="airplane">✈️</i><i name="anchor" title="anchor">⚓️</i><i
+                        name="watch" title="watch">⌚️</i><i name="phone" title="phone">☎️</i><i
+                        name="hourglass" title="hourglass">⌛️</i><i name="email" title="email">✉️</i><i
+                        name="scissors" title="scissors">✂️</i><i name="black_nib"
+                                                                  title="black_nib">✒️</i><i name="pencil2"
+                                                                                             title="pencil2">✏️</i><i
+                        name="x" title="x">❌</i><i name="recycle" title="recycle">♻️</i><i
+                        name="white_check_mark" title="white_check_mark">✅</i><i
+                        name="negative_squared_cross_mark" title="negative_squared_cross_mark">❎</i><i
+                        name="m" title="m">Ⓜ️</i><i name="i" title="i">ℹ️</i><i name="tm"
+                                                                                title="tm">™️</i><i
+                        name="copyright" title="copyright">©️</i><i name="registered"
+                                                                    title="registered">®️</i></div>
+                <div class="vinput vpreview" style="display:none;"></div>
+            </div>
+            <div class="vcontrol">
+                <div class="col col-20" title="Markdown is supported"><a
+                        href="https://segmentfault.com/markdown" target="_blank">
+                    <svg class="markdown" viewBox="0 0 16 16" version="1.1" width="16" height="16"
+                         aria-hidden="true">
+                        <path fill-rule="evenodd"
+                              d="M14.85 3H1.15C.52 3 0 3.52 0 4.15v7.69C0 12.48.52 13 1.15 13h13.69c.64 0 1.15-.52 1.15-1.15v-7.7C16 3.52 15.48 3 14.85 3zM9 11H7V8L5.5 9.92 4 8v3H2V5h2l1.5 2L7 5h2v6zm2.99.5L9.5 8H11V5h2v3h1.5l-2.51 3.5z"></path>
+                    </svg>
+                </a></div>
+                <div class="col col-80 text-right">
+                    <button type="button" title="Cmd|Ctrl+Enter" class="vsubmit vbtn">回复</button>
+                </div>
+            </div>
+            <div style="display:none;" class="vmark"></div>
+        </div>
+        <div class="vinfo" style="display:none;">
+            <div class="vcount col"></div>
+        </div>
+        <div class="vlist"></div>
+        <div class="vempty" style="display:block;">快来做第一个评论的人吧~</div>
+        <div class="vpage txt-center"></div>
+        <div class="info">
+            <div class="power txt-right">Powered By <a href="https://valine.js.org"
+                                                       target="_blank">Valine</a><br>v1.3.10
+            </div>
+        </div>
+        -->
+    </div>
+</div>
+{% endblock %}
+
+{% block endScript %}
+    <script type="text/javascript">
+        /*$(document).ready(function () {
+            loadComments();
+        });
+
+        function loadComments() {*/
+            var gitalk = new Gitalk({
+                clientID: 'de8bc5ca05dea8811612',
+                clientSecret: '3b202365f235bc7b4549d253d0701e419965853a',
+                repo: 'blog_comments',
+                owner: 'starrynightok',
+                admin: 'starrynightok',
+                id: location.pathname, // Ensure uniqueness and length less than 50
+                distractionFreeMode: false  // Facebook-like distraction free mode
+            });
+
+            gitalk.render('gitalk-container');
+       // }
+    </script>
+{% endblock %}
+

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="content-wrap">
+        <div id="content" class="content">
+            <div id="posts" class="posts-expand">
+                <div class="post-block page" style="opacity: 1; display: block;">
+                    <header class="post-header" style="opacity: 1; display: block; transform: translateY(0px);"><h2
+                            class="post-title" itemprop="name headline">标签</h2>
+                    </header>
+                    <div class="post-body" style="opacity: 1; display: block; transform: translateY(0px);">
+                        <div class="tag-cloud">
+                            <div class="tag-cloud-title">目前共计 {{ tags|length }} 个标签</div>
+                            <div id="tag-cloud" class="tag-cloud-tags">
+                                {% for tag in tags %}
+                                    <a href="/tag_info/{{ tag.pk }}" rel="{{ tag.article_set|length }}">
+                                        {{ tag.name }}
+                                    </a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+<script type="text/javascript">
+    $.fn.tagcloud.defaults = {
+        size: {start: 14, end: 18, unit: 'pt'},
+        color: {start: '#ccc', end: '#111'}
+    };
+
+    $(function () {
+        $('#tag-cloud a').tagcloud();
+    });
+</script>

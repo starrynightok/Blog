@@ -1,0 +1,27 @@
+<nav class="pagination" style="opacity: 1; display: block;">
+{% if list.has_previous %}
+    <a class="extend prev" rel="prev" href="?page={{ list.previous_page_number }}">
+        <i class="fa fa-angle-left"></i>
+    </a>
+{% else %}
+    <a class="extend prev"></a>
+{%  endif %}
+
+{% for num in list.paginator.page_range %}
+    {% if num %}
+        {% ifequal num list.number %}
+            <span class="page-number current">{{ num }}</span>
+        {% else %}
+            <a class="page-number" href="?page={{ num }}">{{ num }}</a>
+        {% endifequal %}
+    {% else %}
+    {% endif %}
+{% endfor %}
+{% if list.has_next %}
+    <a class="extend next" rel="next" href="?page={{ list.next_page_number }}">
+        <i class="fa fa-angle-right"></i>
+    </a>
+{% else %}
+    <a class="extend next"></a>
+{% endif %}
+</nav>

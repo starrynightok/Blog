@@ -1,0 +1,47 @@
+<aside id="sidebar" class="sidebar" style="margin-top: 375px; margin-left: initial;">
+    <div class="sidebar-inner affix-top" style="opacity: 1; display: block; transform: initial;">
+        <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+            <div class="site-overview" style="max-height: 873px;">
+                <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+                    <img class="site-author-image" itemprop="image" src='{% url 'index' %}media/upimg/starrynight.jpg' alt="Hans">
+                    <p class="site-author-name" itemprop="name">星夜</p>
+                    <p class="site-description motion-element" itemprop="description"></p>
+                </div>
+                <nav class="site-state motion-element">
+                    <div class="site-state-item site-state-posts">
+                        <a href="/archives/">
+                            <span class="site-state-item-count">{{ allarticle|length }}</span>
+                            <span class="site-state-item-name">日志</span>
+                        </a>
+                    </div>
+                    <div class="site-state-item site-state-categories">
+                        <a href="/categories/">
+                            <span class="site-state-item-count">{{ allcategory|length }}</span>
+                            <span class="site-state-item-name">分类</span>
+                        </a>
+                    </div>
+                    <div class="site-state-item site-state-tags">
+                        <a href="/tags/">
+                            <span class="site-state-item-count">{{ alltag|length }}</span>
+                            <span class="site-state-item-name">标签</span>
+                        </a>
+                    </div>
+                </nav>
+                <div class="links-of-author motion-element">
+                    <span class="links-of-author-item">
+                        <a href="https://github.com/starrynightok" target="_blank" title="GitHub">
+                            <i class="fa fa-fw fa-github"></i>
+                            GitHub
+                        </a>
+                    </span>
+                    <span class="links-of-author-item">
+                        <a href="" target="_blank" title="简书">
+                            <i class="fa fa-fw fa-book"></i>
+                            简书
+                        </a>
+                    </span>
+                </div>
+            </div>
+        </section>
+    </div>
+</aside>
